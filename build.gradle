@@ -1,0 +1,71 @@
+
+defaultTasks 'test'
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+   repositories {
+       maven {
+            url "https://plugins.gradle.org/m2/"
+       }
+   }
+}
+
+apply plugin: "java"
+
+compileJava {options.encoding = "UTF-8"}
+compileTestJava {options.encoding = "UTF-8"}
+
+dependencies {
+    testImplementation("org.junit:junit-bom:5.9.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.14.1")
+    testImplementation("io.github.bonigarcia:webdrivermanager:5.6.0")
+    testImplementation("io.cucumber:cucumber-junit:7.9.0")
+    implementation("io.cucumber:cucumber-java:7.9.0")
+    testImplementation("io.cucumber:cucumber-picocontainer:7.9.0")
+    implementation("com.google.code.gson:gson:2.10")
+    implementation("org.slf4j:slf4j-api:2.0.5")
+    implementation("tech.grasshopper:extentreports-cucumber7-adapter:1.9.2")
+    implementation("com.aventstack:extentreports:5.0.9")
+    implementation("org.junit.vintage:junit-vintage-engine:5.9.1")
+
+}
+
+test {
+    dependsOn assemble, compileTestJava
+    jvmArgs '--enable-preview'
+    useJUnitPlatform()
+}
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+
+def tags = (findProperty('tags') == null) ? 'not @Ignore' : findProperty('tags') + ' and not @Ignore'
+
+task runWithCucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                '--plugin', 'pretty',
+                '--plugin', 'json:src/test/resources/output/report/Cucumber.json',
+                '--plugin', 'com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:',
+                '--glue', 'steps',
+                'src/test/resources/features',
+                '--tags', "${tags}"]
+        }
+    }
+
+
+}
