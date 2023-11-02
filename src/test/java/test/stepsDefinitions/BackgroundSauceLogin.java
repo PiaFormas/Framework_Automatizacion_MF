@@ -1,22 +1,18 @@
 package test.stepsDefinitions;
 
-import io.cucumber.java.en.Given;
-import test.constants.Navegador;
-import test.driverConfig.DriverContext;
 import test.pages.SauceDemoPage;
-import test.util.MetodosGenericos;
 
-import static org.junit.Assert.assertEquals;
-import static test.constants.Constant.URL_SAUCE;
-
-public class BackgroundSauce {
+public class BackgroundSauceLogin {
     SauceDemoPage SauceDemo = new SauceDemoPage();
 
-    @Given("Ingresar a SauceDemo")
-    public void ingresarASauceDemo() {
-        DriverContext.setUp(Navegador.Chrome, URL_SAUCE);
-        MetodosGenericos.esperar(2);
-        String url = DriverContext.getDriver().getCurrentUrl();
-        assertEquals(URL_SAUCE, url);
-    }
+   // @Given("Ingresar a SauceDemo")
+   // public void ingresarASauceDemo() {
+       // DriverContext.setUp(Navegador.Chrome, URL_SAUCE);
+      //  MetodosGenericos.esperar(2);
+      //  String url = DriverContext.getDriver().getCurrentUrl();
+       // assertEquals(URL_SAUCE, url);
+   // }
+
+
+
 }

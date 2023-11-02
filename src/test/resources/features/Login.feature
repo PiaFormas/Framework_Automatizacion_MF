@@ -1,23 +1,18 @@
-Feature: Busqueda de google, se esperar realizar e ingresar a una pagina utilizando el buscador de google.
+Feature: Loguearse en la página de SauceDemo y visualizar los productos
 
 
   Background:
-  Given Ingresar a google
+  Given Ingresar a SauceDemo
 
-  @google @tsoft
-  Scenario: Busqueda google
-    When introduzco la palabra "Tsoft"
-    And selecciono el resultado de la busqueda "Tsoft"
-    And se visualiza la pagina "https://www.tsoftglobal.com/"
+  @test
+  Scenario: Loguearse exitosamente en SauceDemo
+    When me logueo en Saucedemo introduciendo "Username_Correcto" y "Password"
+    Then visualizo los productos en venta
 
 
-  @google @parametrico @FALLIDOS
-  Scenario Outline: Busqueda google parametrizada
-    When introduzco la palabra "<Busqueda>"
-    And selecciono el resultado de la busqueda "<Busqueda>"
-    Then se visualiza la pagina "<Url>"
+  @test
+  Scenario: Loguearse erroneamente en SauceDemo
+    When me logueo en Saucedemo introduciendo "Username_Erroneo" y "Password"
+    Then visualizo mensaje de error en login
 
-    Examples:
-      | Busqueda | Url                                        |
-      | Tsoft    | https://www.tsoftglobal.com/               |
-      | Jira     | https://www.atlassian.com/es/software/jira |
+

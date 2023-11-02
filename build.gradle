@@ -22,7 +22,7 @@ compileJava {options.encoding = "UTF-8"}
 compileTestJava {options.encoding = "UTF-8"}
 
 dependencies {
-    testImplementation("org.junit:junit-bom:5.9.1"))
+    //testImplementation("org.junit:junit-bom:5.9.1")
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.seleniumhq.selenium:selenium-java:4.14.1")
     testImplementation("io.github.bonigarcia:webdrivermanager:5.6.0")
@@ -59,9 +59,9 @@ task runWithCucumber() {
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             args = [
                 '--plugin', 'pretty',
-                '--plugin', 'json:src/test/resources/output/report/Cucumber.json',
+                '--plugin', 'json:src/test/resources/output.report/Cucumber.json',
                 '--plugin', 'com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:',
-                '--glue', 'steps',
+                '--glue', 'test.stepsDefinitions',
                 'src/test/resources/features',
                 '--tags', "${tags}"]
         }

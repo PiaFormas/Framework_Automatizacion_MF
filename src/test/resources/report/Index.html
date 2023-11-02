@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Reporte Consorcio</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">jun. 2, 2023 12:38:11 p. m.</span></a>
+<a href="#"><span class="badge badge-primary">oct 31, 2023 08:58:22 p. m.</span></a>
 </li>
 </ul>
 </div>
@@ -52,6 +52,11 @@
 <span class="ico"><i class="fa fa-list"></i></span>
 </a>
 </li>
+<li class="nav-item dropdown" onclick="toggleView('exception-view')">
+<a id="nav-exception" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bug"></i></span>
+</a>
+</li>
 </ul>
 </div>
 </div>      <div class="vcontainer">
@@ -61,13 +66,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>jun. 2, 2023 12:38:11 p. m.</h3>
+<h3>oct 31, 2023 08:58:22 p. m.</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>jun. 2, 2023 12:38:25 p. m.</h3>
+<h3>oct 31, 2023 08:58:43 p. m.</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -79,7 +84,7 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Features Failed</p>
-<h3>0</h3>
+<h3>1</h3>
 </div></div>
 </div>
 </div>
@@ -95,12 +100,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
+<div><small data-tooltip='50%'>
 <b>1</b> features passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> features failed,
+<small data-tooltip='50%'><b>1</b> features failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -118,9 +123,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>1</b> scenarios passed</small></div>
+<div><small data-tooltip='75%'><b>3</b> scenarios passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> scenarios failed,
+<small data-tooltip='25%'><b>1</b> scenarios failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -138,9 +143,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>3</b> steps passed</small></div>
+<div><small data-tooltip='96%'><b>31</b> steps passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> steps failed,
+<small data-tooltip='3%'><b>1</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -157,7 +162,7 @@
 </div></div>
 <script>
 var timeline = {
-"Visualizar lista de clientes en página principal de Tsoft":12.697
+"Agregar y visualizar productos en el carrito de compras":10.509,"Loguearse en la página de SauceDemo y visualizar los productos":8.993
 };
 </script>
 <div class="row">
@@ -167,20 +172,12 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>@clientes</td>
+<td>@test</td>
+<td>3</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@tsoft</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
+<td>75%</td>
 </tr>
 </tbody>
 </table></div>
@@ -192,18 +189,18 @@ var timeline = {
 var statusGroup = {
 parentCount: 5,
 passParent: 1,
-failParent: 0,
+failParent: 1,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
-passChild: 1,
-failChild: 0,
+passChild: 3,
+failChild: 1,
 warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 3,
-failGrandChild: 0,
+passGrandChild: 31,
+failGrandChild: 1,
 warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
@@ -220,6 +217,7 @@ eventsCount: 5,
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
 <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -227,31 +225,31 @@ eventsCount: 5,
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@clientes</a><a class="dropdown-item" href="#">@tsoft</a>
+<a class="dropdown-item" href="#">@test</a>
 </ul>
 </li>
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="pass" test-id="1"
+        <li class="test-item"  status="fail" test-id="1"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Visualizar lista de clientes en página principal de Tsoft</p>
+            <p class="name">Agregar y visualizar productos en el carrito de compras</p>
             <p class="text-sm">
-              <span>12:38:12</span> / <span>00:00:12:697</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>20:58:23</span> / <span>00:00:10:509</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Visualizar lista de clientes en página principal de Tsoft</h5>
-<span class='badge badge-success'>06.02.2023 12:38:12</span>
-<span class='badge badge-danger'>06.02.2023 12:38:25</span>
-<span class='badge badge-default'>00:00:12:697</span>
+<h5 class="test-status text-fail">Agregar y visualizar productos en el carrito de compras</h5>
+<span class='badge badge-success'>10.31.2023 20:58:23</span>
+<span class='badge badge-danger'>10.31.2023 20:58:34</span>
+<span class='badge badge-default'>00:00:10:509</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -263,23 +261,346 @@ eventsCount: 5,
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Visualizar clientes Tsoft</div>
+        <div class="node" id="2"><span class="badge log fail-bg mr-2">Fail</span>Agregar producto al carro</div>
+          <div class="status-avatar float-right mr-4">
+            <i class="fa fa-paperclip"></i>
+          </div>
+      </div>
+    </div>
+        <div class="">
+          <div class="card-body">
+              <div class="step pass-bg" title="test.stepsDefinitions.BackgroundSauceCarrito.ingresar_a_sauce_demo()">
+                <span>Given Ingresar a SauceDemo</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded1.png' src="src/test/resources/output.report/screenshots/embedded1.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.LoginDefinition.me_logueo_en_sauce_demo_introduciendo(java.lang.String,java.lang.String)">
+                <span>When me logueo en Saucedemo introduciendo "Username_Correcto" y "Password"</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded2.png' src="src/test/resources/output.report/screenshots/embedded2.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.CarritoDefinition.agrego_al_aarro_el_producto_que_me_interesa()">
+                <span>When agrego al carro el producto que me interesa</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded3.png' src="src/test/resources/output.report/screenshots/embedded3.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.CarritoDefinition.hagoClickEnElIconoDelCarro()">
+                <span>And selecciono el icono del carro</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded4.png' src="src/test/resources/output.report/screenshots/embedded4.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step fail-bg" title="test.stepsDefinitions.CarritoDefinition.visualizoElProductoEnMiCarroDeCompras()">
+                <span>Then visualizo el producto en mi carro de compras</span>
+      <div>
+        <textarea disabled class="code-block">java.lang.AssertionError: no fue posible visualizar el producto
+	at org.junit.Assert.fail(Assert.java:89)
+	at test.pages.CarritoPage.visualizarProductoEnCarro(CarritoPage.java:79)
+	at test.stepsDefinitions.CarritoDefinition.visualizoElProductoEnMiCarroDeCompras(CarritoDefinition.java:27)
+	at ?.visualizo el producto en mi carro de compras(file:///C:/Users/maria.formas/OneDrive%20-%20Multicaja/klap/Framework_Automatizacion_MF/src/test/resources/features/Carrito.feature:12)
+</textarea>
+      
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[FAIL] Scenario ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded5.png' src="src/test/resources/output.report/screenshots/embedded5.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="14"><span class="badge log pass-bg mr-2">Pass</span>Remover producto desde el carro</div>
+          <div class="status-avatar float-right mr-4">
+            <i class="fa fa-paperclip"></i>
+          </div>
       </div>
     </div>
         <div class="collapse">
           <div class="card-body">
-              <div class="step pass-bg" title="steps.BackgroundTsoft.ingresarATsoft()">
-                <span>Given Ingresar a Tsoft</span>
+              <div class="step pass-bg" title="test.stepsDefinitions.BackgroundSauceCarrito.ingresar_a_sauce_demo()">
+                <span>Given Ingresar a SauceDemo</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="steps.Tsoft.seleccionoElBoton(java.lang.String)">
-                <span>When selecciono el boton "Clientes"</span>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded6.png' src="src/test/resources/output.report/screenshots/embedded6.png">
+    
+    </div></div>
+</div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="steps.Tsoft.visualizoLosDeTsoft(java.lang.String)">
-                <span>Then visualizo los "clientes" de tsoft</span>
+              <div class="step pass-bg" title="test.stepsDefinitions.LoginDefinition.me_logueo_en_sauce_demo_introduciendo(java.lang.String,java.lang.String)">
+                <span>When me logueo en Saucedemo introduciendo "Username_Correcto" y "Password"</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded7.png' src="src/test/resources/output.report/screenshots/embedded7.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.CarritoDefinition.agrego_al_aarro_el_producto_que_me_interesa()">
+                <span>When agrego al carro el producto que me interesa</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded8.png' src="src/test/resources/output.report/screenshots/embedded8.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.CarritoDefinition.hagoClickEnElIconoDelCarro()">
+                <span>And selecciono el icono del carro</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded9.png' src="src/test/resources/output.report/screenshots/embedded9.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.CarritoDefinition.remuevoElProductoDelCarro()">
+                <span>Then remuevo el producto del carro</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded10.png' src="src/test/resources/output.report/screenshots/embedded10.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="26"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Loguearse en la página de SauceDemo y visualizar los productos</p>
+            <p class="text-sm">
+              <span>20:58:34</span> / <span>00:00:08:993</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Loguearse en la página de SauceDemo y visualizar los productos</h5>
+<span class='badge badge-success'>10.31.2023 20:58:34</span>
+<span class='badge badge-danger'>10.31.2023 20:58:43</span>
+<span class='badge badge-default'>00:00:08:993</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=26</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>
+<div class="accordion mt-4">
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="27"><span class="badge log pass-bg mr-2">Pass</span>Loguearse exitosamente en SauceDemo</div>
+          <div class="status-avatar float-right mr-4">
+            <i class="fa fa-paperclip"></i>
+          </div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="test.stepsDefinitions.BackgroundSauceCarrito.ingresar_a_sauce_demo()">
+                <span>Given Ingresar a SauceDemo</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded11.png' src="src/test/resources/output.report/screenshots/embedded11.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.LoginDefinition.me_logueo_en_sauce_demo_introduciendo(java.lang.String,java.lang.String)">
+                <span>When me logueo en Saucedemo introduciendo "Username_Correcto" y "Password"</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded12.png' src="src/test/resources/output.report/screenshots/embedded12.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.LoginDefinition.visualizoEnSauceDemo()">
+                <span>Then visualizo los productos en venta</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded13.png' src="src/test/resources/output.report/screenshots/embedded13.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="35"><span class="badge log pass-bg mr-2">Pass</span>Loguearse erroneamente en SauceDemo</div>
+          <div class="status-avatar float-right mr-4">
+            <i class="fa fa-paperclip"></i>
+          </div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="test.stepsDefinitions.BackgroundSauceCarrito.ingresar_a_sauce_demo()">
+                <span>Given Ingresar a SauceDemo</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded14.png' src="src/test/resources/output.report/screenshots/embedded14.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.LoginDefinition.me_logueo_en_sauce_demo_introduciendo(java.lang.String,java.lang.String)">
+                <span>When me logueo en Saucedemo introduciendo "Username_Erroneo" y "Password"</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded15.png' src="src/test/resources/output.report/screenshots/embedded15.png">
+    
+    </div></div>
+</div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="test.stepsDefinitions.LoginDefinition.visualizo_mensaje_error()">
+                <span>Then visualizo mensaje de error en login</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="AFTER_STEP">
+                <span>test.stepsDefinitions.Hooks.capturarEvidencia()</span>
+      <div>[SUCCESS] Step ScreenShots
+          <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='src/test/resources/output.report/screenshots/embedded16.png' src="src/test/resources/output.report/screenshots/embedded16.png">
+    
+    </div></div>
+</div>
       <div>
       </div>
               </div>
@@ -298,7 +619,59 @@ eventsCount: 5,
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-        </div>
+<div class="test-wrapper row view exception-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-danger'>1</span>
+</span>
+<p class="name">java.lang.AssertionError</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>java.lang.AssertionError</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>20:58:29 p. m.</td>
+<td>
+<a href="#" class="linked" test-id='1' id='12'>Then visualizo el producto en mi carro de compras</a>
+<div class="">
+<span class="badge badge-default">Agregar y visualizar productos en el carrito de compras.Agregar producto al carro.Then visualizo el producto en mi carro de compras</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div>        </div>
       </div>
     </div>
   </div>

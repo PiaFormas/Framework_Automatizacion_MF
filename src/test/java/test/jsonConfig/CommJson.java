@@ -85,20 +85,20 @@ public class CommJson {
         return this.builder.toString();
     }
 
-    public int getResponseCode() {
-        int response = false;
+    //public int getResponseCode() {
+       // int response = false;
 
-        int response;
-        try {
-            HttpURLConnection httpConnection = this.urlOC;
-            response = httpConnection.getResponseCode();
-        } catch (IOException var3) {
-            var3.printStackTrace();
-            response = 0;
-        }
+        //int response;
+        //try {
+            //HttpURLConnection httpConnection = this.urlOC;
+           // response = httpConnection.getResponseCode();
+      //  } catch (IOException var3) {
+         //   var3.printStackTrace();
+         //   response = 0;
+      //  }
 
-        return response;
-    }
+      //  return response;
+   // }
 
     public String getResponseHeader(String header) {
         String headerResponse = "";

@@ -1,6 +1,6 @@
 package test.stepsDefinitions;
 
-import driverConfig.DriverContext;
+import test.driverConfig.DriverContext;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
@@ -27,13 +27,14 @@ public class Hooks {
         DriverContext.quitDriver();
     }
 
-    @AfterStep("@~db")
-    public void capturarEvidencia() throws Exception {
+    @AfterStep(value="@test")
+    public void capturarEvidencia()  {
         if (this.scenario.isFailed()) {
             this.generateEvidence("[FAIL] Scenario ScreenShots");
         } else if (takeEvidence.equalsIgnoreCase("fullEvidence")) {
             this.generateEvidence("[SUCCESS] Step ScreenShots");
         }
+
 
     }
 

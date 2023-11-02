@@ -1,83 +1,96 @@
 package test.driverConfig;
 
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-//import org.apache.log4j.Logger;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
+import test.constants.Navegador;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
-public class WebDriverFactory {
 
-	private static Properties prop = new Properties();
-	private static InputStream in = CreateDriver.class.getResourceAsStream("../test.properties");
-	private static String resourceFolder;
+public class DriverManager {
 
-	/******** Log Attribute ********/
-	private static Logger log = Logger.getLogger(WebDriverFactory.class);
-	private static WebDriverFactory instance = null;
+	private WebDriver driver;
+	private DesiredCapabilities capabilities = new DesiredCapabilities();
+	private String extensionDriver = "";
 
-	public static WebDriver createNewWebDriver(String browser, String os) throws IOException {
-		WebDriver driver;
-		prop.load(in);
-		resourceFolder = prop.getProperty("resourceFolder");
+	private static final String USERNAME = System.getProperty("user", "defaultUser");
 
-		if ("FIREFOX".equalsIgnoreCase(browser)) {
-			if("WINDOWS".equalsIgnoreCase(os)){
-				System.setProperty("webdriver.gecko.driver", resourceFolder + os + "/geckodriver.exe");
-			}
-			else{
-				System.setProperty("webdriver.gecko.driver", resourceFolder + os + "/geckodriver");
-			}
-			driver = new FirefoxDriver();
+	private static final String AUTOMATE_KEY = System.getProperty("key", "defaultKey");
+
+	protected void resolveDriver(Navegador nav, String ambURL) {
+		//  MetodosGenericos.setReporte(nav.toString());
+		String os = System.getProperty("os.name").toLowerCase();
+		System.out.println("\nSistema operativo ->" + System.getProperty("os.name").toLowerCase() + " " +System.getProperty("os.version").toLowerCase() +"\n");
+		if (!os.contains("mac"))
+			this.extensionDriver = ".exe";
+		System.out.println(nav);
+		Map<String, Object> browserStackOptions = new HashMap<>();
+		switch (nav) {
+			case Chrome:
+				System.out.println("Se selecciona Chrome");
+				WebDriverManager.chromedriver().setup();
+				ChromeOptions chromeOptions = new ChromeOptions();
+				chromeOptions.addArguments("--disable-dev-shm-usage");
+				chromeOptions.addArguments("--no-sandbox");
+				chromeOptions.addArguments("--disable-gpu");
+				chromeOptions.addArguments("--remote-allow-origins=*");
+				chromeOptions.addArguments("--ignore-ssl-errors=yes");
+				this.driver = new ChromeDriver(chromeOptions);
+				this.driver.manage().deleteAllCookies();
+				this.driver.manage().window().maximize();
+				this.driver.get(ambURL);
+				break;
+			case Firefox:
+				System.out.println("Se selecciona Firefox");
+				WebDriverManager.firefoxdriver().setup();
+				this.driver = (WebDriver) new FirefoxDriver();
+				this.capabilities.setBrowserName("Firefox");
+				this.driver.manage().window().maximize();
+				this.driver.get(ambURL);
+				break;
+			case Edge:
+				System.out.println("Se selecciona Edge");
+				EdgeOptions edgeOptions = new EdgeOptions();
+				WebDriverManager.edgedriver().setup();
+				edgeOptions.addArguments("--remote-allow-origins=*");
+				this.driver = new EdgeDriver(edgeOptions);
+				this.driver.manage().deleteAllCookies();
+				break;
+			case Safari:
+				System.out.println("Se selecciona Safari");
+				WebDriverManager.safaridriver().setup();
+				this.driver = (WebDriver) new SafariDriver();
+				this.capabilities.setBrowserName("Safari");
+				this.driver.manage().window().maximize();
+				this.driver.get(ambURL);
+				break;
+
+			default:
+				System.out.println("No es posible lanzar el navegador, no se reconoce el navegador: " + nav);
+				break;
 		}
+		this.driver.manage().window().maximize();
+		this.driver.get(ambURL);
 
-		/******** The driver selected is Chrome  ********/
+	}
 
-		else if ("CHROME".equalsIgnoreCase(browser)) {
-			if("WINDOWS".equalsIgnoreCase(os)){
-				System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver.exe");
-			}
-			else{
-				System.setProperty("webdriver.chrome.driver", resourceFolder+os+"/chromedriver");
-			}
-           /* ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("headless");
-            //chromeOptions.addArguments("window-size=1360,1360");
-            chromeOptions.addArguments("window-size=1500,1500");
-            driver = new ChromeDriver(chromeOptions);*/
-			driver = new ChromeDriver();
+
+	protected WebDriver getDriver() {
+		if (driver == null) {
+			return driver;
+		} else {
+			return driver;
 		}
-
-		/******** The driver selected is Internet Explorer ********/
-		else if ("INTERNET EXPLORER".equalsIgnoreCase(browser)) {
-			System.setProperty("webdriver.ie.driver", resourceFolder+os+"/IEDriverServer.exe");
-			driver = new InternetExplorerDriver();
-
-		}
-		/******** The driver is not selected  ********/
-		else {
-			log.error("The Driver is not selected properly, invalid name: " + browser + ", " + os);
-			return null;
-		}
-		driver.manage().window().maximize();
-		return driver;
 	}
 
 
 }
-
-
-
-
-
-
-
-
-
-

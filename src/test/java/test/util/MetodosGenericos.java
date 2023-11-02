@@ -1,16 +1,5 @@
 package test.util;
 
-import driverConfig.DriverContext;
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +9,18 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test.driverConfig.DriverContext;
+
+import java.awt.*;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MetodosGenericos {
     public MetodosGenericos() {
@@ -385,6 +386,48 @@ public class MetodosGenericos {
             var3.printStackTrace();
             Assert.fail("Se genera el siguiente error, al intentar verificar sección: " + var3.getMessage());
         }
+    }
+        public boolean isVisible(WebElement webElement){
+            try {
+                return webElement.isDisplayed();
+            } catch (Exception e){
+                return false;
+            }
+        }
+
+    public String setearclave(String rut) {
+        Connection connection = null;
+        Statement st = null;
+        String url = "jdbc:postgresql://10.179.20.10:5432/mc_tlog";
+        String user = "karla.villasmil";
+        String password = "fTmv7qj97YoP2e";
+        String Clave = null;
+
+        try {
+            connection = DriverManager.getConnection(url, user, password);
+            st = connection.createStatement();
+            String SeteoClaveAbono = "select seguridad.mc_crea_clave('EMPRESA[]=MULTICAJA###ENTIDAD[]=PERSONA###PRODUCTO[]=###RUT[]=" + rut + "###ROL[]=2###')";
+            ResultSet rs = st.executeQuery(SeteoClaveAbono);
+
+            while(true) {
+                if (!rs.next()) {
+                    rs.close();
+                    st.close();
+                    connection.close();
+                    break;
+                }
+
+                Clave = rs.getString("mc_crea_clave");
+            }
+        } catch (SQLException var10) {
+            throw new RuntimeException(var10);
+        }
+
+        System.out.println("[ Nueva1 #" + Clave + " ]");
+        return Clave;
+
 
     }
-}
+
+    }
+

@@ -6,110 +6,100 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import test.constants.Constant;
 import test.driverConfig.DriverContext;
 import test.util.MetodosGenericos;
 
 import static org.junit.Assert.fail;
 
-public class SauceDemoPage {
+public class CarritoPage {
     private WebDriver driver = DriverContext.getDriver();
-    private static final Logger log = LoggerFactory.getLogger(SauceDemoPage.class);
+    private static final Logger log = LoggerFactory.getLogger(CarritoPage.class);
     @FindBy(
-            id = "user-name"
+            id = "add-to-cart-sauce-labs-backpack"
     )
-    WebElement Username;
-
-    @FindBy(
-            id = "password"
-    )
-    WebElement Password;
+    WebElement primerProducto;
 
     @FindBy(
-            id = "login-button"
+            id = "shopping_cart_container"
     )
-    WebElement btnIngresar;
+    WebElement btnCarrito;
 
-    @FindBy(xpath = "//span[contains(text(),'Products')]")
-    WebElement labelProducts;
-    @FindBy(xpath = " //h3[text()='Epic sadface: Username and password do not match any user in this service']")
-    WebElement msjeError;
+    @FindBy(
+           //xpath = "//div[@class='cart_item_label']//div[text()='Sauce Labs Backpack']"
+    )
+    WebElement productoEnCarro;
 
-    public SauceDemoPage() {
+    @FindBy(id = "remove-sauce-labs-backpack")
+    WebElement btnRemove;
+
+
+    public CarritoPage() {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void IngresarUsername(String user) {
+    public void AgregarProductoAlCarro() {
         try {
 
+            boolean validarBtnAdd = MetodosGenericos.visualizarObjeto(primerProducto, 15);
+            if (validarBtnAdd) {
+                primerProducto.click();
 
-            boolean validarUsername = MetodosGenericos.visualizarObjeto(Username, 15);
-            if (validarUsername && user.equals("Username_Correcto")) {
-                Username.sendKeys(Constant.Username_Correcto);
-            } else if (user.equals("Username_Erroneo")) {
-                Username.sendKeys(Constant.Username_Erroneo);
             } else {
-                fail("no se logro visualizar el campo usuario");
+                fail("no se logro visualizar el boton");
             }
 
         } catch (Exception e) {
-            fail("no fue posible ingresar el texto " + user + " en el campo de busqueda");
+            fail("no fue posible encontrar el elemento");
         }
 
     }
 
-    public void IngresarPassword(String pass) {
+    public void seleccionarIconoCarrito() {
         try {
-            boolean validarPass = MetodosGenericos.visualizarObjeto(Password, 10);
-            if (validarPass) {
-                Password.sendKeys(Constant.Password);
+            boolean validarBtnCarrito = MetodosGenericos.visualizarObjeto(btnCarrito, 10);
+            if (validarBtnCarrito) {
+                btnCarrito.click();
+
             } else {
-                fail("no se logro visualizar el campo de busqueda");
+                fail("no se logro visualizar el boton");
             }
 
         } catch (Exception e) {
-            fail("no fue posible ingresar el texto " + pass + " en el campo de busqueda");
+            fail("no fue posible encontrar el elemento");
         }
 
     }
+    public boolean visualizarProductoEnCarro() {
 
-    public void ClickBtnIngresar() {
         try {
-            boolean validarBtnIngresar = MetodosGenericos.visualizarObjeto(btnIngresar, 10);
-            if (validarBtnIngresar) {
-                btnIngresar.click();
+            MetodosGenericos.visualizarObjeto(productoEnCarro, 10);
+            return productoEnCarro.isDisplayed();
+
+        } catch (Exception e) {
+            fail("no fue posible visualizar el producto");
+        }
+        return false;
+    }
+
+
+    public void ClickBtnRemove() {
+        try {
+            boolean validarBtnRemove = MetodosGenericos.visualizarObjeto(btnRemove, 10);
+            if (validarBtnRemove) {
+                btnRemove.click();
             } else {
                 fail("no se logro realizar el click");
             }
 
 
         } catch (Exception e) {
-            fail("no fue posible visualizar el botón ");
+            fail("no fue posible visualizar el botón");
         }
 
     }
 
-    public void visualizarProductos() {
-        try {
-            MetodosGenericos.visualizarObjeto(labelProducts, 10);
-
-        } catch (Exception e) {
-            fail("no fue posible validar el inicio de sesion");
-        }
-    }
 
 
-    public boolean visualizarMensajeError() {
-
-        try {
-            MetodosGenericos.visualizarObjeto(msjeError, 10);
-            return msjeError.isDisplayed();
-
-        } catch (Exception e) {
-            fail("no fue posible validar el inicio de sesion");
-        }
-        return false;
-    }
 
     }
 

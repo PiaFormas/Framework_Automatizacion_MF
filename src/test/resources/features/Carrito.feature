@@ -1,18 +1,22 @@
-Feature: Loguearse en la página de SauceDemo y visualizar los productos
+Feature: Agregar y visualizar productos en el carrito de compras
 
 
   Background:
-  Given Ingresar a SauceDemo
+    Given Ingresar a SauceDemo
+    When me logueo en Saucedemo introduciendo "Username_Correcto" y "Password"
 
   @test
-  Scenario: Loguearse exitosamente en SauceDemo
-    When me logueo en Saucedemo introduciendo "Username_Correcto" y "Password"
-    Then visualizo los productos en venta
+  Scenario: Agregar producto al carro
+    When agrego al carro el producto que me interesa
+    And selecciono el icono del carro
+    Then visualizo el producto en mi carro de compras
 
 
-  @test1
-  Scenario: Loguearse erroneamente en SauceDemo
-    When me logueo en Saucedemo introduciendo "Username_Erroneo" y "Password"
-    Then visualizo mensaje de error en login
+  @test
+  Scenario: Remover producto desde el carro
+    When agrego al carro el producto que me interesa
+    And selecciono el icono del carro
+    Then remuevo el producto del carro
+
 
 

@@ -1,8 +1,8 @@
-package driver;
+package test.driverConfig;
 
-import constants.Navegador;
+import test.constants.Navegador;
 
-import static constants.Navegador.*;
+import static test.constants.Navegador.*;
 
 public class NavSelector {
 
@@ -27,22 +27,7 @@ public class NavSelector {
                 nav = Safari;
                 return nav;
             }
-            case "ChromeBS" -> {
-                nav = ChromeBS;
-                return nav;
-            }
-            case "EdgeBS" -> {
-                nav = EdgeBS;
-                return nav;
-            }
-            case "FirefoxBS" -> {
-                nav = FirefoxBS;
-                return nav;
-            }
-            case "SafariBS" -> {
-                nav = SafariBS;
-                return nav;
-            }
+
         }
         return Chrome;
     }

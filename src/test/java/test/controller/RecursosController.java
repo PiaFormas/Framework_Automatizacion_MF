@@ -1,40 +1,36 @@
 
-package controller;
+package test.controller;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static constants.Constant.clientes;
+import test.constants.Constant;
 
 
 public class RecursosController {
 
     private static final Logger log = LoggerFactory.getLogger(RecursosController.class);
 
-    public static String [] getDataTest(String dataTest) {
-        String data = "";
-        String [] dataArray = null;
-        try {
-            if (!dataTest.isEmpty()) {
-                switch (dataTest){
 
-                    case "clientes":
-                        dataArray = clientes;
-                        break;
+    static String data;
+    public static String getData(String dataInput) {
+        switch (dataInput) {
+            case "Username":
+                data = Constant.Username_Correcto;
+                break;
+            case "Password":
+                data = Constant.Password;
+                break;
+            case "UsernameErroneo":
+                data=Constant.Username_Erroneo;
 
-                        default:
-                            Assert.fail("nombre del parametro '" + dataTest + "' no controlado, necesita revision");
-                            break;
 
-                    }
-
-            }
-        }catch (Exception e){
-            log.error("Error para obtener data de prueba: " + e);
+            default:
+                Assertions.fail("No se encontro el dato solicitado" + data);
+                break;
         }
-
-        return dataArray;
+        return data;
     }
-}
 
+
+}
